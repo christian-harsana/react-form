@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
 
 function App() {
 
@@ -111,7 +109,7 @@ function App() {
   console.log("render");
 
   return (
-    <>
+    <div className="card">
       <h1 className="u-text-align-center">React Form</h1>
 
       <form onSubmit={handleFormSubmit}>
@@ -165,7 +163,7 @@ function App() {
 
         <div className="l-v-spacing-lv-3">
           <label htmlFor="sports">Sport</label>
-          <select id="sports" name="sports" className="multiple" multiple={true} value={formData.sports} onChange={(e) => handleFieldChange(e)}>
+          <select id="sports" name="sports" size={3} multiple={true} value={formData.sports} onChange={(e) => handleFieldChange(e)}>
             {
               SPORTS.map((sport) => <option key={sport} value={sport}>{sport}</option>)
             }
@@ -192,7 +190,7 @@ function App() {
           <button type="submit" className="btn-primary btn-full">Submit</button>
         </div>
       </form>
-    </>
+    </div>
   )
 }
 

@@ -1,10 +1,10 @@
 :root {
-  font-family: "Karla", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Karla", Helvetica, system-ui, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-size: 10px;
 
-  color-scheme: light dark;
+  color-scheme: dark;
   color: #242424;
   background-color: #f4f0e9;
 
@@ -12,16 +12,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
 }
 
 body {
@@ -39,6 +29,16 @@ h1 {
   font-weight: 800;
   font-size: 4.8rem;
   line-height: 1.1;
+}
+
+a {
+  font-weight: 500;
+  color: #2ecc71;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #27ae60;
 }
 
 form {
@@ -73,30 +73,54 @@ input[type="password"]:focus-visible {
 }
 
 select {
-  margin: 0;
-  padding: 0.9rem;
   appearance: none;
-  background-color: #FEFEFE;
-  border: 1px solid #bdc3c7;
-  border-radius: 4px;
+  margin: 0;
+  padding-block: 0.9rem;
+  padding-inline: 0.9rem 3.8rem;
   width: 100%;
   color: #242424;
   font: inherit;
+  background-color: #FEFEFE;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M297.4 438.6C309.9 451.1 330.2 451.1 342.7 438.6L502.7 278.6C515.2 266.1 515.2 245.8 502.7 233.3C490.2 220.8 469.9 220.8 457.4 233.3L320 370.7L182.6 233.4C170.1 220.9 149.8 220.9 137.3 233.4C124.8 245.9 124.8 266.2 137.3 278.7L297.3 438.7z"/></svg>');
+  background-position: right 0.9rem center;
+  background-repeat: no-repeat;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
 }
 
-select:focus,
-select:focus-visible {
-  outline: 1px solid #7f8c8d;
+  select:focus,
+  select:focus-visible {
+    outline: 1px solid #7f8c8d;
+  }
+
+  /*
+  TODO: Find optimal setup, still inconsistent accross browsers 
+  select option:hover {
+    background-color: #bdc3c7;
+  }
+
+  select option:checked {
+    background-color: #2ecc71;
+  } 
+  */
+
+select[multiple] {
+  padding: 0;
+  background-image: none;
 }
+
+  select[multiple] option {
+    padding: 0.9rem;
+  }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
   padding: 0.9rem;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #242424;
+  border: 1px solid transparent;
+  border-radius: 4px;
   cursor: pointer;
   transition: border-color, background-color 0.25s;
 }
@@ -115,24 +139,8 @@ button:focus-visible {
 
 /* Form Elements */
 
-select[multiple] {
-  padding: 0;
-}
-
-  select[multiple] option {
-    padding: 0.9rem;
-  }
-
-  select[multiple] option:hover {
-    background-color: #bdc3c7;
-  }
-
-  select[multiple] option[selected] {
-    background-color: #2ecc71;
-  }
-
 .field-error {
-  color: #e74c3c;
+  color: #c0392b;
 }
 
 input + .field-error {
@@ -163,6 +171,8 @@ input + .field-error {
 }
 
 
+/* 
+TODO: Investigate more for light/dark mode feature
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -174,4 +184,5 @@ input + .field-error {
   button {
     background-color: #f9f9f9;
   }
-}
+} 
+*/
