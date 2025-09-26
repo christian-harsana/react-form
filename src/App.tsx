@@ -191,7 +191,7 @@ function App() {
             <input id="name" 
               name="name" 
               type="text"
-              // required={true} 
+              required={true} 
               value={formData.name} 
               onChange={(e) => handleFieldChange(e)}
               onBlur={(e) => handleFieldBlur(e)}
@@ -205,7 +205,7 @@ function App() {
             <input id="email" 
               name="email" 
               type="email" 
-              // required={true} 
+              required={true} 
               value={formData.email} 
               onChange={(e) => handleFieldChange(e)} 
               onBlur={(e) => handleFieldBlur(e)}
@@ -219,7 +219,7 @@ function App() {
             <input id="password" 
               name="password" 
               type="password" 
-              // required={true} 
+              required={true} 
               value={formData.password}
               onChange={(e) => handleFieldChange(e)} 
               onBlur={(e) => handleFieldBlur(e)}
