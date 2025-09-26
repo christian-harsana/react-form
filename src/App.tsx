@@ -10,7 +10,7 @@ type FormData = {
   password: string;
   color: string;
   sports: string[];
-  soccerTeam?: string | undefined;
+  soccerTeam: string;
 }
 
 type FormErrors = {
@@ -32,27 +32,31 @@ function App() {
   // HANDLERS
   // --------------------------------------
 
-  function validateField(name: keyof FormData, value: string | string[] | undefined): string {
-    
-    let error = "";
+  function validateField(name: keyof FormData, value: string | string[]): string {
     
     switch(name) {
 
+      case "name":
+        if (value.length < 1) return "Please provide a name";
+        break;
+
       case "email":
+        if (value.length < 1) return "Please provide an email";
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        error = (value && !emailRegex.test(value as string)) ? "Please input a valid email" : "";
+        if (!emailRegex.test(value as string)) return "Please input a valid email";
         break;
 
       case "password":
-        error = (value && value.length < 8) ? "Password must be at least 8 characters" : "";
+        if (value.length < 1) return "Please provide a password";
+        if (value.length < 8) return "Password must be at least 8 characters";
         break;
       
       case "soccerTeam":
-        error = (typeof value !== "undefined" && value.length < 1) ? "Please input a soccer team" : "";
+        if (value.length < 1) return "Please input a soccer team";
         break;
     }
 
-    return error;
+    return "";
   }
 
 
@@ -154,7 +158,7 @@ function App() {
       setFieldTouched({});
       setErrors({});
 
-      // Process submitted values...
+      console.log("Process submitted form...");
     }
   }
 
@@ -183,22 +187,25 @@ function App() {
 
         <form onSubmit={(e) => handleFormSubmit(e, formData)}>
           <div className="l-v-spacing-lv-3">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name" className="required-field" title="Name - Required">Name</label>
             <input id="name" 
               name="name" 
               type="text"
+              // required={true} 
               value={formData.name} 
               onChange={(e) => handleFieldChange(e)}
               onBlur={(e) => handleFieldBlur(e)}
+              className={errors.name ? "s-error" : "" }
               {...(errors.name && { "aria-invalid" : "true", "aria-describedby" : "nameError" })} />
             {errors.name && <div id="nameError" className="field-error">{errors.name}</div>}
           </div>
 
           <div className="l-v-spacing-lv-3">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email" className="required-field" title="Email - Required">Email</label>
             <input id="email" 
               name="email" 
               type="email" 
+              // required={true} 
               value={formData.email} 
               onChange={(e) => handleFieldChange(e)} 
               onBlur={(e) => handleFieldBlur(e)}
@@ -208,11 +215,12 @@ function App() {
           </div>
 
           <div className="l-v-spacing-lv-3">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" className="required-field" title="Password - Required">Password</label>
             <input id="password" 
               name="password" 
               type="password" 
-              value={formData.password} 
+              // required={true} 
+              value={formData.password}
               onChange={(e) => handleFieldChange(e)} 
               onBlur={(e) => handleFieldBlur(e)}
               className={errors.password ? "s-error" : "" }
@@ -243,7 +251,7 @@ function App() {
           {
             formData.sports.includes("Soccer") && 
               <div className="l-v-spacing-lv-3" aria-live="polite">
-                <label htmlFor="soccer-team" className="required-field" title="Required">Favourite Soccer Team</label>
+                <label htmlFor="soccer-team" className="required-field" title="Favourite Soccer Team - Required">Favourite Soccer Team</label>
                 <input id="soccer-team" 
                   name="soccerTeam" 
                   type="text" 
